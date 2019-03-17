@@ -1,3 +1,5 @@
+**This is against discord's ToS so be aware**
+
 **Commands For the bot**
 1) $rape - will ban everyone off the server and will remove all the channels
 2) $h - will kick everyone off the server
