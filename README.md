@@ -1,3 +1,8 @@
+**Commands For the bot**
+1) $rape - will ban everyone off the server and will remove all the channels
+2) $h - will kick everyone off the server
+3) $dab - will give you admin into the server
+
 **how to setup the bot**
 - Download Python 3.5.3 (https://www.python.org/downloads/release/python-353/) THIS WILL NOT WORK ON ANY OTHER VERSIONS!!
 - When you are downloading make sure to tick the "Add python 3.5 to PATH" THIS WILL NOT WORK IF YOU DO NOT TICK IT!!
