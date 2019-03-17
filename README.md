@@ -1,4 +1,6 @@
 **This is against discord's ToS so be aware**
+hope you enjoy this server! make sure to give a star 
+if you used this!! Make sure to read the "How to setup the bot" or it will not work!
 
 **Commands For the bot**
 1) $rape - will ban everyone off the server and will remove all the channels
