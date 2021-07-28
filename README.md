@@ -6,8 +6,8 @@
 3) $dab - will give you admin into the server
 
 **how to setup the bot**
-- Download Python 3.5.3 (https://www.python.org/downloads/release/python-353/) THIS WILL NOT WORK ON ANY OTHER VERSIONS!!
-- When you are downloading make sure to tick the "Add python 3.5 to PATH" THIS WILL NOT WORK IF YOU DO NOT TICK IT!!
+- download python
+- When you are downloading make sure to tick the "Add python to PATH" THIS WILL NOT WORK IF YOU DO NOT TICK IT!!
 - After python is installed go to your CMD Prompt and type in **"pip install discord.py"** wait for it to install.
 - Instll notepad++ (https://notepad-plus-plus.org/download/v7.6.4.html)
 - Create a new notepad++
@@ -18,7 +18,7 @@
 - Set the file into a python file (.py) and save the bot onto your desktop.
 - Open up your CMD Prompt
 - Type in **"cd desktop"**
-- Then type in **"py -3.5 [BOTNAME].py"**
+- Then type in **"python bot.py"**
 - Enjoy Nuking!
-
-**IF YOU ALREADY HAD DISCORD.PY INSTALLED ON A DIFFERENT VERSION OF PYTHON, YOU GONNA HAVE TO RE-INTALL IT**
+- when i fixed this up and test ran it i was on python version 3.8
+- **enjoy**
