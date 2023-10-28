@@ -18,7 +18,7 @@
 - Set the file into a python file (.py) and save the bot onto your desktop.
 - Open up your CMD Prompt
 - Type in ```cd desktop```
-- Then type in ```py -3.5 [BOTNAME].py```
+- Then type in ```py -3.5 bot.py```
 - Enjoy Nuking!
 
 **IF YOU ALREADY HAD DISCORD.PY INSTALLED ON A DIFFERENT VERSION OF PYTHON, YOU GONNA HAVE TO RE-INSTALL IT**
